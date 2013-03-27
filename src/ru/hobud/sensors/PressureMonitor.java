@@ -15,6 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -62,9 +63,9 @@ public class PressureMonitor extends Activity implements SensorEventListener {
   RadioGroup radioGroup = null;
 
   private XYPlot preHistoryPlot = null;
-  private SimpleXYSeries preassureHistorySeries = null;
-  private LinkedList<Double> preassureHistory;
-  private SmoothingWindow preassureSmoothingWin = new SmoothingWindow(100);
+  private SimpleXYSeries pressureHistorySeries = null;
+  private LinkedList<Double> pressureHistory;
+  private SmoothingWindow pressureSmoothingWin = new SmoothingWindow(100);
 
   private LinkedList<Double> altitudeHistory;
   private SmoothingWindow altitudeSmoothingWin = new SmoothingWindow(100);
@@ -75,8 +76,8 @@ public class PressureMonitor extends Activity implements SensorEventListener {
   private int sensorId = 0;
 
   {
-    preassureHistory = new LinkedList<Double>();
-    preassureHistorySeries = new SimpleXYSeries("Preassure");
+    pressureHistory = new LinkedList<Double>();
+    pressureHistorySeries = new SimpleXYSeries("Pressure");
 
     altitudeHistory = new LinkedList<Double>();
 
@@ -86,7 +87,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
   private XYPlot longHistoryPlot = null;
   private SimpleXYSeries longHistorySeries = null;
   {
-    longHistorySeries = new SimpleXYSeries("Preassure");
+    longHistorySeries = new SimpleXYSeries("Pressure");
   }
 
   private BroadcastReceiver intentReceiver;
@@ -116,13 +117,13 @@ public class PressureMonitor extends Activity implements SensorEventListener {
         plotLongHistory();
       }
     });
-    setTitle("Preassure");
+    setTitle("Pressure");
 
     // setup the APR History plot:
     preHistoryPlot = (XYPlot) findViewById(R.id.pressurePlot);
     preHistoryPlot.setRangeBoundaries(900, 1300, BoundaryMode.AUTO);
     preHistoryPlot.setDomainBoundaries(0, 100, BoundaryMode.AUTO);// FIXED);
-    preHistoryPlot.addSeries(preassureHistorySeries, new LineAndPointFormatter(Color.BLACK, Color.RED, null, new PointLabelFormatter(
+    preHistoryPlot.addSeries(pressureHistorySeries, new LineAndPointFormatter(Color.BLACK, Color.RED, null, new PointLabelFormatter(
         Color.TRANSPARENT)));
     preHistoryPlot.setDomainStepValue(5);
     preHistoryPlot.setTicksPerRangeLabel(3);
@@ -162,17 +163,17 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 
   @Override
   protected void onSaveInstanceState(Bundle outState) {
-    float[] data = new float[preassureHistory.size()];
-    for (int i = 0; i < preassureHistory.size(); i++) {
-      data[i] = preassureHistory.get(i).floatValue();
+    float[] data = new float[pressureHistory.size()];
+    for (int i = 0; i < pressureHistory.size(); i++) {
+      data[i] = pressureHistory.get(i).floatValue();
     }
-    outState.putFloatArray("Preassure", data);
+    outState.putFloatArray("Pressure", data);
 
-    data = new float[preassureSmoothingWin.size()];
-    for (int i = 0; i < preassureSmoothingWin.size(); i++) {
-      data[i] = preassureSmoothingWin.get(i).floatValue();
+    data = new float[pressureSmoothingWin.size()];
+    for (int i = 0; i < pressureSmoothingWin.size(); i++) {
+      data[i] = pressureSmoothingWin.get(i).floatValue();
     }
-    outState.putFloatArray("Preassure Smoothing Window", data);
+    outState.putFloatArray("Pressure Smoothing Window", data);
 
     data = new float[altitudeHistory.size()];
     for (int i = 0; i < altitudeHistory.size(); i++) {
@@ -202,18 +203,18 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 
   @Override
   protected void onRestoreInstanceState(Bundle inState) {
-    float[] data = inState.getFloatArray("Preassure");
+    float[] data = inState.getFloatArray("Pressure");
     if (data != null) {
-      preassureHistory.clear();
+      pressureHistory.clear();
       for (float f : data) {
-        preassureHistory.add((double) f);
+        pressureHistory.add((double) f);
       }
     }
-    data = inState.getFloatArray("Preassure Smoothing Window");
+    data = inState.getFloatArray("Pressure Smoothing Window");
     if (data != null) {
-      preassureSmoothingWin.clear();
+      pressureSmoothingWin.clear();
       for (float f : data) {
-        preassureSmoothingWin.push((double) f);
+        pressureSmoothingWin.push((double) f);
       }
     }
 
@@ -251,7 +252,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 
   private void plotPressureHistory()
   {
-    SensorHistory pressureLongHistory = new SensorHistory("/mnt/sdcard/Sensors/preassure.dat");
+    SensorHistory pressureLongHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/pressure.dat");
     longHistoryPlot.setRangeLabel("Pressure (hPa)");
     longHistoryPlot.getRangeLabelWidget().pack();
     longHistorySeries.setModel(pressureLongHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
@@ -260,7 +261,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
   
   private void plotAltitudeHistory()
   {
-    SensorHistory altitudeLongHistory = new SensorHistory("/mnt/sdcard/Sensors/altitude.dat");
+    SensorHistory altitudeLongHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/altitude.dat");
     longHistoryPlot.setRangeLabel("Altitude (m)");
     longHistoryPlot.getRangeLabelWidget().pack();
     longHistorySeries.setModel(altitudeLongHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
@@ -269,7 +270,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
   
   private void plotTemperatureHistory()
   {
-    SensorHistory temperatureLongHistory = new SensorHistory("/mnt/sdcard/Sensors/temperature.dat");
+    SensorHistory temperatureLongHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/temperature.dat");
     longHistoryPlot.setRangeLabel("Temperature (ºC)");
     longHistoryPlot.getRangeLabelWidget().pack();
     longHistorySeries.setModel(temperatureLongHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
@@ -316,18 +317,18 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     for (float value : event.values) {
       valuesString += String.format("%d) %f ", counter++, value);
     }
-    valuesString += " , " + preassureHistory.size();
+    valuesString += " , " + pressureHistory.size();
     textViewPressure.setText(valuesString);
 
-    double value = preassureSmoothingWin.push((double) event.values[0]);
+    double value = pressureSmoothingWin.push((double) event.values[0]);
     // Number[] series1Numbers = {event.values[0], event.values[1],
     // event.values[2]};
     // get rid the oldest sample in history:
-    if (preassureHistory.size() > HISTORY_SIZE) {
-      preassureHistory.removeFirst();
+    if (pressureHistory.size() > HISTORY_SIZE) {
+      pressureHistory.removeFirst();
     }
     // add the latest history sample:
-    preassureHistory.addLast(value);// event.values[0]);
+    pressureHistory.addLast(value);// event.values[0]);
 
     value = altitudeSmoothingWin.push((double) event.values[1]);
     if (altitudeHistory.size() > HISTORY_SIZE) {
@@ -343,15 +344,15 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     if(cooler++%2 == 0) return;
     // update the plot with the updated history Lists:
     if (sensorId == 0) {
-      preassureHistorySeries.setModel(preassureHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
+      pressureHistorySeries.setModel(pressureHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
       preHistoryPlot.setRangeLabel("Pressure (hPa)");
     }
     else if (sensorId == 1) {
-      preassureHistorySeries.setModel(altitudeHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
+      pressureHistorySeries.setModel(altitudeHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
       preHistoryPlot.setRangeLabel("Altitude (m)");
     }
     else {
-      preassureHistorySeries.setModel(tempHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
+      pressureHistorySeries.setModel(tempHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
       preHistoryPlot.setRangeLabel("Temperature (ºC)");
     }
 

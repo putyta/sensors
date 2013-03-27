@@ -11,7 +11,7 @@ public class AutoStart extends BroadcastReceiver {
     if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
 //      context.startService(new Intent(context, SamplingService.class));
 //      SensorManager sensorManager = (SensorManager) context.getSystemService(android.content.Context.SENSOR_SERVICE);
-//      Sensor preassureMeter = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+//      Sensor pressureMeter = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
 //      Toast.makeText(context, "AutoStart - set the alarm...",
 //          Toast.LENGTH_SHORT).show();

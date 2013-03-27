@@ -28,7 +28,7 @@ public class SamplingService extends Service {
   private Sensor pressureMeter;
   static int count = 0;
   private SensorsSampler sensorsSampler = null;
-  private final static String logFile = "/mnt/sdcard/tmp/sensors.log";
+  private final static String logFile = Environment.getExternalStorageDirectory().getPath() + "/tmp/sensors.log";
   
   static Context ctx;
 
@@ -138,16 +138,16 @@ logMessage("EXCEPTION reading " + filename + "\n" + exc.toString() + "\n" + s);
   }
 
   private class SensorsSampler implements SensorEventListener {
-    private SensorHistory preassureHistory = null;
+    private SensorHistory pressureHistory = null;
     private SensorHistory altitudeHistory = null;
     private SensorHistory temperatureHistory = null;
     private Runnable callback = null;
     public boolean oneShotFlag = false;
 
     public SensorsSampler(Runnable callback) {
-      preassureHistory = new SensorHistory("/mnt/sdcard/Sensors/preassure.dat");
-      altitudeHistory = new SensorHistory("/mnt/sdcard/Sensors/altitude.dat");
-      temperatureHistory = new SensorHistory("/mnt/sdcard/Sensors/temperature.dat");
+      pressureHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/pressure.dat");
+      altitudeHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/altitude.dat");
+      temperatureHistory = new SensorHistory(Environment.getExternalStorageDirectory().getPath() + "/Sensors/temperature.dat");
       this.callback = callback;
     }
 
@@ -158,13 +158,13 @@ logMessage("EXCEPTION reading " + filename + "\n" + exc.toString() + "\n" + s);
     @Override
     public void onSensorChanged(SensorEvent event) {
       if (oneShotFlag) {
-        double preassure = event.values[0];
+        double pressure = event.values[0];
         double altitude = event.values[1];
         double temperature = event.values[2];
-        preassureHistory.push(preassure);
+        pressureHistory.push(pressure);
         altitudeHistory.push(altitude);
         temperatureHistory.push(temperature);
-        preassureHistory.flush();
+        pressureHistory.flush();
         altitudeHistory.flush();
         temperatureHistory.flush();
         if (callback != null) {
