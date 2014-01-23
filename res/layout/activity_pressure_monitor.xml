@@ -20,7 +20,7 @@
             android:layout_height="200dp" />
 
         <RadioGroup
-            android:id="@+id/radioGroup1"
+            android:id="@+id/parameterSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -37,11 +37,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/altitude_text" />
 
-            <RadioButton
-                android:id="@+id/temperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/temperature_text" />
         </RadioGroup>
 
         <com.androidplot.xy.XYPlot
