@@ -324,7 +324,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
         String valuesString = "";
         double pressure = event.values[0];
         double altitude = barometricLeveling.getValue(pressure);
-        valuesString += String.format("Давление: %.0f гПа (%.0f мм.рт.ст.), высота: %.2fм", pressure, pressure*PASCAL_TO_STOPB, altitude);
+        valuesString += String.format("Давление: %.0f гПа (%.0f мм.рт.ст.), высота: %.1fм", pressure, pressure*PASCAL_TO_STOPB, altitude);
 
 //        int counter = 0;
 //        for (float value : event.values) {
