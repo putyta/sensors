@@ -1,11 +1,7 @@
 package ru.hobud.sensors;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import ru.hobud.sensors.SamplingService.SensorHistory;
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +11,15 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -30,9 +33,18 @@ import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
 
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.LinkedList;
+
+import android.content.DialogInterface;
+
+import ru.hobud.sensors.SamplingService.SensorHistory;
+
 public class PressureMonitor extends Activity implements SensorEventListener {
 
-    private static final double PASCAL_TO_STOPB = 760.0 / 1013.25;
+    private static final double PASCAL_TO_STOLB = 760.0 / 1013.25;
 
     public class SmoothingWindow extends ArrayList<Double> {
         /**
@@ -56,6 +68,97 @@ public class PressureMonitor extends Activity implements SensorEventListener {
             return res / size();
         }
     }
+
+    private static long last_pres_t = 0, last_alt_t = 0;
+    public void savaData(long pres_t, double pres, long alt_t, double alt, double acc) {
+        if(last_pres_t == pres_t && last_alt_t == alt_t)
+            return;
+        RandomAccessFile file;
+        try {
+            String filename = Environment.getExternalStorageDirectory().getPath() + "/Sensors/baroalt.dat";
+            file = new RandomAccessFile(filename, "rw");
+            file.seek(file.length());
+            String str = String.format("%d,%f,%d,%.0f,%.0f\n", pres_t, pres, alt_t, alt, acc);
+            file.write(str.getBytes());
+            file.close();
+            last_alt_t = alt_t;
+            last_pres_t = pres_t;
+        } catch (Exception e) {
+        }
+    }
+
+    private void turnGPSOn()
+    {
+        Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
+        intent.putExtra("enabled", true);
+        this.ctx.sendBroadcast(intent);
+
+        String provider = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if(!provider.contains("gps")){ //if gps is disabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            this.ctx.sendBroadcast(poke);
+        } else {
+            Toast.makeText(ctx, "GPS is not accessible", Toast.LENGTH_SHORT).show();
+        }
+    }
+    // automatic turn off the gps
+    private void turnGPSOff()
+    {
+        String provider = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if(provider.contains("gps")){ //if gps is enabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            this.ctx.sendBroadcast(poke);
+        } else {
+            Toast.makeText(ctx, "GPS is not accessible 1", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class GPSAltituder implements LocationListener {
+        public double accuracy = -1;
+        public double altitude = 0.0;
+        public long milisecs = 0;
+
+        GPSAltituder() {
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            float accuracy = location.getAccuracy();
+            double altitude = location.getAltitude();
+            Calendar c = Calendar.getInstance();
+            this.milisecs = c.getTimeInMillis();
+            if(accuracy == 0.0 || altitude == 0) {
+                this.accuracy = -1;
+            } else {
+                this.accuracy = accuracy;
+                this.altitude = altitude;
+            }
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    }
+
+    private GPSAltituder altituder = null;
 
     private static final int HISTORY_SIZE = 500;
     private static final int SMOOTH_WINDOW_SIZE = 10;
@@ -141,8 +244,38 @@ public class PressureMonitor extends Activity implements SensorEventListener {
         preHistoryPlot.setRangeLabel("Pressure (hPa)");
         preHistoryPlot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(ctx, "CLICK", Toast.LENGTH_SHORT).show();
+            public void onClick(final View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                builder.setTitle(String.format("%s altituder", getString(altituder==null ? R.string.start_altituder : R.string.stop_altituder)));
+// Add the buttons
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                        if(altituder == null) {
+                            altituder = new GPSAltituder();
+                            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, altituder);
+                            v.setKeepScreenOn(true);
+                        } else {
+                            lm.removeUpdates(altituder);
+                            altituder = null;
+                            v.setKeepScreenOn(false);
+                        }
+                        Toast.makeText(ctx, String.format("%s altituder", altituder == null ? "STOP" : "START"), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+// Set other dialog properties
+                builder.setMessage(String.format("%s запись данных", altituder == null ? "Запустить" : "Остановить"));
+// Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
 
@@ -318,13 +451,19 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        Toast.makeText(ctx, String.format("%s: %d", sensor.getName(), accuracy), Toast.LENGTH_SHORT).show();
     }
 
     public void onSensorChanged(SensorEvent event) {
         String valuesString = "";
         double pressure = event.values[0];
         double altitude = barometricLeveling.getValue(pressure);
-        valuesString += String.format("Давление: %.0f гПа (%.0f мм.рт.ст.), высота: %.1fм", pressure, pressure*PASCAL_TO_STOPB, altitude);
+        valuesString += String.format("Давление: %.0f гПа (%.0f мм), высота: %.1fм", pressure, pressure* PASCAL_TO_STOLB, altitude);
+        if(altituder != null && altituder.accuracy > 0) {
+            valuesString += String.format(", %.0fм(%.0f)", altituder.altitude, altituder.accuracy);
+            Calendar c = Calendar.getInstance();
+            savaData(c.getTimeInMillis(), pressure, altituder.milisecs, altituder.altitude, altituder.accuracy);
+        }
 
 //        int counter = 0;
 //        for (float value : event.values) {

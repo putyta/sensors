@@ -8,5 +8,10 @@
     <string name="preassure_text">Давление</string>
     <string name="altitude_text">Высота</string>
     <string name="temperature_text">Температура</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="start_stop_altituder">Start/Stop altituder</string>
+    <string name="start_altituder">Start</string>
+    <string name="stop_altituder">Stop</string>
 
 </resources>
