@@ -10,6 +10,10 @@
         <option name="packageNamePattern" value="" />
         <option name="pid" value="" />
       </filter>
+      <filter>
+        <option name="name" value="app: ru.hobud.sensors" />
+        <option name="packageNamePattern" value="ru.hobud.sensors" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidLayoutPreviewToolWindow">
@@ -21,18 +25,28 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml">
+        <config>
+          <device>Nexus 5</device>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Sensors1" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: ru.hobud.sensors" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63b4c10f-35d5-4b60-bf7d-46af310da542" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v11/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v14/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+    <list default="true" id="63b4c10f-35d5-4b60-bf7d-46af310da542" name="Default" comment="add GPS &quot;altituder&quot; to get data for analyzes&#10;# Please enter the commit message for your changes. Lines starting&#10;# with '#' will be ignored, and an empty message aborts the commit.&#10;# On branch master&#10;# Your branch is ahead of 'origin/master' by 3 commits.&#10;#   (use &quot;git push&quot; to publish your local commits)&#10;#&#10;# Changes to be committed:&#10;#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)&#10;#&#10;#&#9;modified:   .gradle/1.9/taskArtifacts/cache.properties.lock&#10;#&#9;modified:   .gradle/1.9/taskArtifacts/fileHashes.bin&#10;#&#9;modified:   .gradle/1.9/taskArtifacts/fileSnapshots.bin&#10;#&#9;modified:   .gradle/1.9/taskArtifacts/taskArtifacts.bin&#10;#&#9;deleted:    .idea/libraries/Gradle__android_support_v4.xml&#10;#&#9;modified:   .idea/workspace.xml&#10;#&#9;modified:   AndroidManifest.xml&#10;#&#9;modified:   Sensors.iml&#10;#&#9;new file:   res/values-v11/strings.xml&#10;#&#9;new file:   res/values-v14/strings.xml&#10;#&#9;modified:   res/values/strings.xml&#10;#&#9;modified:   src/ru/hobud/sensors/PressureMonitor.java&#10;#&#10;# Untracked files:&#10;#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)&#10;#&#10;#&#9;build/&#10;#&#9;src/com&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v11/dimens.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values-v14/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/hobud/sensors/PressureMonitor.java" afterPath="$PROJECT_DIR$/src/ru/hobud/sensors/PressureMonitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sensors.iml" afterPath="$PROJECT_DIR$/Sensors.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml" afterPath="$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-v11/strings.xml" afterPath="$PROJECT_DIR$/res/values-v11/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-v14/strings.xml" afterPath="$PROJECT_DIR$/res/values-v14/strings.xml" />
     </list>
     <ignored path="Sensors.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,82 +120,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main_panel.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_main_panel.xml">
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainPanel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/MainPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="43" selection-start="1885" selection-end="1888" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1260">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PressureMonitor.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/PressureMonitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="460" column="66" selection-start="17205" selection-end="17205" vertical-scroll-proportion="0.36347827" vertical-offset="6865" max-vertical-offset="8136">
+            <state line="175" column="47" selection-start="5832" selection-end="5832" vertical-scroll-proportion="-1.1895652" vertical-offset="3150" max-vertical-offset="8514">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#SmoothingWindow#0;class#PressureMonitor#0" expanded="false" />
-                <element signature="method#turnGPSOff#0;class#PressureMonitor#0" expanded="false" />
-                <element signature="method#onStatusChanged#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-                <element signature="method#onProviderEnabled#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-                <element signature="method#onProviderDisabled#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-                <element signature="e#8456#10293#0" expanded="true" />
-                <element signature="e#8723#8747#0" expanded="true" />
-                <element signature="e#8750#8773#0" expanded="true" />
-                <element signature="e#8839#8850#0" expanded="true" />
-                <element signature="e#8852#9736#0" expanded="true" />
-                <element signature="e#9717#9718#0" expanded="true" />
-                <element signature="e#9781#9796#0" expanded="true" />
-                <element signature="e#9798#10004#0" expanded="true" />
-                <element signature="e#9985#9986#0" expanded="true" />
-                <element signature="e#10282#10283#0" expanded="true" />
-                <element signature="method#plotPressureHistory#0;class#PressureMonitor#0" expanded="false" />
                 <element signature="method#plotAltitudeHistory#0;class#PressureMonitor#0" expanded="false" />
                 <element signature="method#plotTemperatureHistory#0;class#PressureMonitor#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="R.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/source/r/debug/ru/hobud/sensors/R.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="2433" selection-end="2433" vertical-scroll-proportion="-17.68" vertical-offset="548" max-vertical-offset="1098">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Intent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/android-sdks/sources/android-17/android/content/Intent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3772" column="0" selection-start="174747" selection-end="174747" vertical-scroll-proportion="0.0" vertical-offset="66977" max-vertical-offset="123354">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1116">
-              <folding>
-                <element signature="e#792#810#0" expanded="true" />
-                <element signature="e#951#969#0" expanded="true" />
-                <element signature="e#1348#1389#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,10 +135,8 @@
       <file leaf-file-name="SamplingService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/SamplingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="125" selection-start="5622" selection-end="5699" vertical-scroll-proportion="-12.074074" vertical-offset="2464" max-vertical-offset="4014">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="155" column="125" selection-start="5622" selection-end="5699" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="4086">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -580,37 +523,37 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/0.7.3/67a7e909b4a9ee4af4a3b8e490044597b20f070b/builder-test-api-0.7.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/22.4.2/e5498775552b90a043553ffca015ffa70aa579bd/lint-checks-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/4.0/67bd266cd17adcee486b76952ece4cc85fe248b8/asm-tree-4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.1/9ba2dcdf94ce35c8a8e9bff242db0618ca932e92/httpmime-4.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/22.4.2/20c55ee46b58603782cca43d6d144589d6f6c5f3/lint-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcpkix-jdk15on/1.48/28b7614b908a47844bb27e3c94b45b6893656265/bcpkix-jdk15on-1.48.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/0.7.3/ca49066448b10fd8c9a902dd9678783e5818c6a2/builder-model-0.7.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.0/995ae384a0b1e2c66269e6bc5198db8561fb45a2/commons-compress-1.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/22.4.2/89a259ec5d4f78d3c26342ab886aa5c8eb9bf1b4/manifest-merger-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/0.7.3/ecf08ce414c11f79a370ad7b391d709c2248ed11/builder-0.7.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/22.4.2/de6ad39b999606da0aeb29ba6f78439f6ea07054/layoutlib-api-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/22.4.2/4dc3f9c634f2d29a47490311951b0e9c30a93dd6/common-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/4.0/1c45d52b6f6c638db13cf3ac12adeb56b254cdd7/asm-analysis-4.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/22.4.2/1e378401aa7c4f4a515c2bf53ffa8db75bac5712/sdklib-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1/33fc26c02f8043ab0ede19eadc8c9885386b255c/httpcore-4.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/22.4.2/37a4de77f288666ef6cbd82451ff391e52eae073/ddmlib-22.4.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/0.7.3/ff09fdc8c994c50a9c950378035c5f820edad6be/gradle-0.7.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/22.4.2/6fcf65b585b9f8b85315353919fc51d7b79b3fbf/lint-api-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.proguard/proguard-gradle/4.10/edad1b6af1c08c54a58fb39da9fa48e03bc6678d/proguard-gradle-4.10.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk15on/1.48/960dea7c9181ba0b17e8bab0c06a43f0a5f04e65/bcprov-jdk15on-1.48.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.1/3d1d918f32709e33ba7ddb2c4e8d1c543ebe713e/httpclient-4.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.proguard/proguard-base/4.10/46e891272ae0338af3f5de5e14d8d2641edefc2c/proguard-base-4.10.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.kxml/kxml2/2.3.0/ccbc77a5fd907ef863c29f3596c6f54ffa4e9442/kxml2-2.3.0.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.external.lombok/lombok-ast/0.2.1/27891a8ce600fd3e70b66e3501ce43a8996268a8/lombok-ast-0.2.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/4.0/659add6efc75a4715d738e73f07505246edf4d66/asm-4.0.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/d6f22b1e60a2f1ef99e22c9f5fde270b2088365/guava-13.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/common/22.4.2/4dc3f9c634f2d29a47490311951b0e9c30a93dd6/common-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-model/0.7.3/ca49066448b10fd8c9a902dd9678783e5818c6a2/builder-model-0.7.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1/33fc26c02f8043ab0ede19eadc8c9885386b255c/httpcore-4.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.1/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.1/3d1d918f32709e33ba7ddb2c4e8d1c543ebe713e/httpclient-4.1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.1/9ba2dcdf94ce35c8a8e9bff242db0618ca932e92/httpmime-4.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.kxml/kxml2/2.3.0/ccbc77a5fd907ef863c29f3596c6f54ffa4e9442/kxml2-2.3.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.layoutlib/layoutlib-api/22.4.2/de6ad39b999606da0aeb29ba6f78439f6ea07054/layoutlib-api-22.4.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/dvlib/22.4.2/3b11b54e01d78e0bfb1cee170f494f3ad72cfa32/dvlib-22.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.2.1/d6dac1da0b24ab9ea9a6b5d49c2586d85f17e597/javawriter-2.2.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.0/995ae384a0b1e2c66269e6bc5198db8561fb45a2/commons-compress-1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdklib/22.4.2/1e378401aa7c4f4a515c2bf53ffa8db75bac5712/sdklib-22.4.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/sdk-common/22.4.2/66b2e10c4d3f575ef18c19b969c49e606981e4af/sdk-common-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/4.0/659add6efc75a4715d738e73f07505246edf4d66/asm-4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.external.lombok/lombok-ast/0.2.1/27891a8ce600fd3e70b66e3501ce43a8996268a8/lombok-ast-0.2.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/4.0/67bd266cd17adcee486b76952ece4cc85fe248b8/asm-tree-4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-api/22.4.2/6fcf65b585b9f8b85315353919fc51d7b79b3fbf/lint-api-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/4.0/1c45d52b6f6c638db13cf3ac12adeb56b254cdd7/asm-analysis-4.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint-checks/22.4.2/e5498775552b90a043553ffca015ffa70aa579bd/lint-checks-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.lint/lint/22.4.2/20c55ee46b58603782cca43d6d144589d6f6c5f3/lint-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/22.4.2/89a259ec5d4f78d3c26342ab886aa5c8eb9bf1b4/manifest-merger-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.2.1/d6dac1da0b24ab9ea9a6b5d49c2586d85f17e597/javawriter-2.2.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.ddms/ddmlib/22.4.2/37a4de77f288666ef6cbd82451ff391e52eae073/ddmlib-22.4.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder-test-api/0.7.3/67a7e909b4a9ee4af4a3b8e490044597b20f070b/builder-test-api-0.7.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk15on/1.48/960dea7c9181ba0b17e8bab0c06a43f0a5f04e65/bcprov-jdk15on-1.48.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcpkix-jdk15on/1.48/28b7614b908a47844bb27e3c94b45b6893656265/bcpkix-jdk15on-1.48.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/0.7.3/ecf08ce414c11f79a370ad7b391d709c2248ed11/builder-0.7.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.proguard/proguard-base/4.10/46e891272ae0338af3f5de5e14d8d2641edefc2c/proguard-base-4.10.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.proguard/proguard-gradle/4.10/edad1b6af1c08c54a58fb39da9fa48e03bc6678d/proguard-gradle-4.10.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$" />
@@ -717,11 +660,15 @@
       <list>
         <option value="$PROJECT_DIR$/src/ru/hobud/sensors/AutoStart.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml" />
         <option value="$PROJECT_DIR$/src/ru/hobud/sensors/BarometricLeveling.java" />
         <option value="$PROJECT_DIR$/src/ru/hobud/sensors/SamplingService.java" />
         <option value="$PROJECT_DIR$/build/source/r/debug/ru/hobud/sensors/R.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/build/javaResources/debug/ru/hobud/sensors/PressureMonitor.java" />
+        <option value="$PROJECT_DIR$/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/res/values-v11/dimens.xml" />
+        <option value="$PROJECT_DIR$/res/values-v14/dimens.xml" />
+        <option value="$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml" />
         <option value="$PROJECT_DIR$/src/ru/hobud/sensors/PressureMonitor.java" />
       </list>
     </option>
@@ -805,84 +752,6 @@
               <option name="myItemId" value="Sensors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sensors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -925,6 +794,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="LY-F1_emul" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="SearchEverywhereHistory" value="H" />
   </component>
   <component name="RunManager" selected="Android Application.Sensors">
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
@@ -954,6 +824,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -1070,6 +941,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="Sensors" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1079,7 +951,7 @@
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -1089,6 +961,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <RunnerSettings RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
@@ -1150,13 +1023,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39907193" sideWeight="0.74404764" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30162412" sideWeight="0.28214285" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30162412" sideWeight="0.7178571" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30162412" sideWeight="0.7178571" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1193,20 +1066,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="40" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="810">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/AutoStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="1" selection-start="884" selection-end="884" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="28" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="255" />
@@ -1393,16 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main_panel.xml">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/androidplot/xy/XYPlot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="820" column="16" selection-start="29226" selection-end="29226" vertical-scroll-proportion="0.3321234" vertical-offset="11352" max-vertical-offset="18135" />
@@ -1411,21 +1260,6 @@
     <entry file="file://$USER_HOME$/android-sdks/sources/android-17/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="492" column="18" selection-start="17984" selection-end="17984" vertical-scroll-proportion="0.33197555" vertical-offset="6812" max-vertical-offset="17400" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/javaResources/debug/ru/hobud/sensors/PressureMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="1695" selection-end="1695" vertical-scroll-proportion="0.74034333" vertical-offset="225" max-vertical-offset="4995" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="37" selection-start="781" selection-end="781" vertical-scroll-proportion="0.36190477" vertical-offset="140" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/android-sdks/sources/android-17/java/util/Formatter.java">
@@ -1438,18 +1272,39 @@
         <state line="431" column="16" selection-start="13926" selection-end="13926" vertical-scroll-proportion="0.3321234" vertical-offset="5997" max-vertical-offset="14670" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/SamplingAlarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="90" selection-start="943" selection-end="943" vertical-scroll-proportion="0.49001816" vertical-offset="0" max-vertical-offset="551" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdks/sources/android-17/com/android/internal/os/ZygoteInit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="784" column="0" selection-start="26680" selection-end="26680" vertical-scroll-proportion="0.33197555" vertical-offset="13193" max-vertical-offset="13878" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/BarometricLeveling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.74956524" vertical-offset="181" max-vertical-offset="756" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/MainPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="43" selection-start="1885" selection-end="1888" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+        <state line="51" column="43" selection-start="1885" selection-end="1888" vertical-scroll-proportion="1.1601423" vertical-offset="50" max-vertical-offset="1044" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdks/sources/android-17/android/content/Intent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3772" column="0" selection-start="174747" selection-end="174747" vertical-scroll-proportion="-2.135652" vertical-offset="68368" max-vertical-offset="123354" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_main_panel.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/SamplingAlarm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="90" selection-start="943" selection-end="943" vertical-scroll-proportion="0.49001816" vertical-offset="0" max-vertical-offset="551">
-          <folding />
-        </state>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/AutoStart.java">
@@ -1459,75 +1314,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/android-sdks/sources/android-17/com/android/internal/os/ZygoteInit.java">
+    <entry file="file://$PROJECT_DIR$/build/javaResources/debug/ru/hobud/sensors/PressureMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="784" column="0" selection-start="26680" selection-end="26680" vertical-scroll-proportion="0.33197555" vertical-offset="13193" max-vertical-offset="13878">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/source/r/debug/ru/hobud/sensors/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="2433" selection-end="2433" vertical-scroll-proportion="-17.68" vertical-offset="548" max-vertical-offset="1098">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/BarometricLeveling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.74956524" vertical-offset="181" max-vertical-offset="756">
-          <folding />
-        </state>
+        <state line="90" column="3" selection-start="2544" selection-end="2544" vertical-scroll-proportion="0.13090909" vertical-offset="1098" max-vertical-offset="5994" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1116">
-          <folding>
-            <element signature="e#792#810#0" expanded="true" />
-            <element signature="e#951#969#0" expanded="true" />
-            <element signature="e#1348#1389#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/android-sdks/sources/android-17/android/content/Intent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3772" column="0" selection-start="174747" selection-end="174747" vertical-scroll-proportion="0.0" vertical-offset="66977" max-vertical-offset="123354">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="76" selection-start="115" selection-end="115" vertical-scroll-proportion="0.03130435" vertical-offset="0" max-vertical-offset="575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-v11/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="76" selection-start="115" selection-end="115" vertical-scroll-proportion="0.03130435" vertical-offset="0" max-vertical-offset="575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-v14/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="76" selection-start="115" selection-end="115" vertical-scroll-proportion="0.03130435" vertical-offset="0" max-vertical-offset="575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_pressure_monitor.xml">
+      <provider editor-type-id="text-editor">
+        <state line="31" column="48" selection-start="1353" selection-end="1353" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="1458">
+          <folding>
+            <element signature="e#713#734#0" expanded="false" />
+            <element signature="e#768#786#0" expanded="false" />
+            <element signature="e#817#838#0" expanded="false" />
+            <element signature="e#1139#1160#0" expanded="false" />
+            <element signature="e#1194#1212#0" expanded="false" />
+            <element signature="e#1243#1264#0" expanded="false" />
+            <element signature="e#1561#1583#0" expanded="false" />
+            <element signature="e#1617#1635#0" expanded="false" />
+            <element signature="e#1666#1687#0" expanded="false" />
+            <element signature="e#2383#2407#0" expanded="false" />
+            <element signature="e#2614#2637#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/SamplingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="125" selection-start="5622" selection-end="5699" vertical-scroll-proportion="-12.074074" vertical-offset="2464" max-vertical-offset="4014">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="155" column="125" selection-start="5622" selection-end="5699" vertical-scroll-proportion="0.0" vertical-offset="2790" max-vertical-offset="4086">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/hobud/sensors/PressureMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="460" column="66" selection-start="17205" selection-end="17205" vertical-scroll-proportion="0.36347827" vertical-offset="6865" max-vertical-offset="8136">
+        <state line="175" column="47" selection-start="5832" selection-end="5832" vertical-scroll-proportion="-1.1895652" vertical-offset="3150" max-vertical-offset="8514">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#SmoothingWindow#0;class#PressureMonitor#0" expanded="false" />
-            <element signature="method#turnGPSOff#0;class#PressureMonitor#0" expanded="false" />
-            <element signature="method#onStatusChanged#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-            <element signature="method#onProviderEnabled#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-            <element signature="method#onProviderDisabled#0;class#GPSAltituder#0;class#PressureMonitor#0" expanded="false" />
-            <element signature="e#8456#10293#0" expanded="true" />
-            <element signature="e#8723#8747#0" expanded="true" />
-            <element signature="e#8750#8773#0" expanded="true" />
-            <element signature="e#8839#8850#0" expanded="true" />
-            <element signature="e#8852#9736#0" expanded="true" />
-            <element signature="e#9717#9718#0" expanded="true" />
-            <element signature="e#9781#9796#0" expanded="true" />
-            <element signature="e#9798#10004#0" expanded="true" />
-            <element signature="e#9985#9986#0" expanded="true" />
-            <element signature="e#10282#10283#0" expanded="true" />
-            <element signature="method#plotPressureHistory#0;class#PressureMonitor#0" expanded="false" />
             <element signature="method#plotAltitudeHistory#0;class#PressureMonitor#0" expanded="false" />
             <element signature="method#plotTemperatureHistory#0;class#PressureMonitor#0" expanded="false" />
           </folding>

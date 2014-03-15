@@ -2,5 +2,5 @@
 <resources>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="start_stop_altituder">Start/Stop altituder</string>
+    <string name="start_stop_altituder">Start/Stop altituder</string><string name="pres_def_pa">1010гПа</string><string name="height_def_m">10000м</string>
 </resources>

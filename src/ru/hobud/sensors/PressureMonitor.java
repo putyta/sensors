@@ -14,11 +14,9 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
@@ -70,7 +68,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     }
 
     private static long last_pres_t = 0, last_alt_t = 0;
-    public void savaData(long pres_t, double pres, long alt_t, double alt, double acc) {
+    public void saveData(long pres_t, double pres, long alt_t, double alt, double acc) {
         if(last_pres_t == pres_t && last_alt_t == alt_t)
             return;
         RandomAccessFile file;
@@ -83,7 +81,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
             file.close();
             last_alt_t = alt_t;
             last_pres_t = pres_t;
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -101,10 +99,10 @@ public class PressureMonitor extends Activity implements SensorEventListener {
             poke.setData(Uri.parse("3"));
             this.ctx.sendBroadcast(poke);
         } else {
-            Toast.makeText(ctx, "GPS is not accessible", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, "GPS not accessible", Toast.LENGTH_SHORT).show();
         }
     }
-    // automatic turn off the gps
+
     private void turnGPSOff()
     {
         String provider = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
@@ -115,7 +113,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
             poke.setData(Uri.parse("3"));
             this.ctx.sendBroadcast(poke);
         } else {
-            Toast.makeText(ctx, "GPS is not accessible 1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, "GPS not accessible 1", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -164,7 +162,9 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     private static final int SMOOTH_WINDOW_SIZE = 10;
     private SensorManager sensorManager;
     private Sensor pressuremeter;
-    TextView textViewPressure = null;
+    TextView textViewPressurePa = null;
+    TextView textViewPressureMM = null;
+    TextView textViewHeight = null;
 
     RadioGroup radioGroup = null;
 
@@ -215,16 +215,24 @@ public class PressureMonitor extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_pressure_monitor);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         pressuremeter = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-        textViewPressure = (TextView) findViewById(R.id.textViewPressure);
+        textViewPressurePa = (TextView) findViewById(R.id.textViewPressurePa);
+        textViewPressureMM = (TextView) findViewById(R.id.textViewPressureMM);
+        textViewHeight = (TextView) findViewById(R.id.textViewHeight);
         radioGroup = (RadioGroup) findViewById(R.id.parameterSwitch);
         radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.preasure)
+                if (checkedId == R.id.preasure) {
                     sensorId = 0;
-                else if (checkedId == R.id.altitude)
+                    preHistoryPlot.setRangeLabel("Pressure (hPa)");
+                    preHistoryPlot.setTitle("Pressure");
+                }
+                else if (checkedId == R.id.altitude) {
                     sensorId = 1;
+                    preHistoryPlot.setRangeLabel("Altitude (m)");
+                    preHistoryPlot.setTitle("Altitude");
+                }
                 plotLongHistory();
             }
         });
@@ -242,6 +250,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 //        preHistoryPlot.setRangeLabel("Temperature (ºC)");
         preHistoryPlot.getRangeLabelWidget().pack();
         preHistoryPlot.setRangeLabel("Pressure (hPa)");
+        preHistoryPlot.setDomainLabel("");
         preHistoryPlot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -290,6 +299,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 //        longHistoryPlot.setRangeLabel("Temperature (ºC)");
         longHistoryPlot.getRangeLabelWidget().pack();
         longHistoryPlot.setRangeLabel("Pressure (hPa)");
+        longHistoryPlot.setDomainLabel("");
 
         // TEST
         if (!SamplingService.isRunning(this)) {
@@ -431,17 +441,17 @@ public class PressureMonitor extends Activity implements SensorEventListener {
 
     protected void onResume() {
         super.onResume();
+        //
         sensorManager.registerListener(this, pressuremeter, SensorManager.SENSOR_DELAY_NORMAL);
         intentReceiver = new BroadcastReceiver() {
-
             @Override
             public void onReceive(Context context, Intent intent) {
                 plotLongHistory();
             }
-
         };
         // registering our receiver
         this.registerReceiver(intentReceiver, new IntentFilter(SamplingService.NEW_DATA_INTENT));
+        plotLongHistory();
     }
 
     protected void onPause() {
@@ -451,26 +461,35 @@ public class PressureMonitor extends Activity implements SensorEventListener {
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        Toast.makeText(ctx, String.format("%s: %d", sensor.getName(), accuracy), Toast.LENGTH_SHORT).show();
+    }
+
+    private String rjust(double v, int prec, int len, char ch) {
+        String fmt = String.format("%%.%df", prec);
+        String s = String.format(fmt, v);
+        while (s.length()<len)
+            s = ch + s;
+        return s;
     }
 
     public void onSensorChanged(SensorEvent event) {
-        String valuesString = "";
+        String heightString = "";
         double pressure = event.values[0];
         double altitude = barometricLeveling.getValue(pressure);
-        valuesString += String.format("Давление: %.0f гПа (%.0f мм), высота: %.1fм", pressure, pressure* PASCAL_TO_STOLB, altitude);
+        textViewPressurePa.setText(String.format("%.0fгПа", pressure));
+        textViewPressureMM.setText(String.format("%.0fмм", pressure*PASCAL_TO_STOLB));
+        heightString = String.format("%.1fм", altitude);
         if(altituder != null && altituder.accuracy > 0) {
-            valuesString += String.format(", %.0fм(%.0f)", altituder.altitude, altituder.accuracy);
+            heightString += String.format(", %.0fм(%.0f)", altituder.altitude, altituder.accuracy);
             Calendar c = Calendar.getInstance();
-            savaData(c.getTimeInMillis(), pressure, altituder.milisecs, altituder.altitude, altituder.accuracy);
+            saveData(c.getTimeInMillis(), pressure, altituder.milisecs, altituder.altitude, altituder.accuracy);
         }
 
 //        int counter = 0;
 //        for (float value : event.values) {
-//            valuesString += String.format("%d) %f ", counter++, value);
+//            heightString += String.format("%d) %f ", counter++, value);
 //        }
-//        valuesString += " , " + pressureHistory.size();
-        textViewPressure.setText(valuesString);
+//        heightString += " , " + pressureHistory.size();
+        textViewHeight.setText(heightString);
 
         double value = pressureSmoothingWin.push(pressure);//(double) event.values[0]);
         // Number[] series1Numbers = {event.values[0], event.values[1],
@@ -497,13 +516,13 @@ public class PressureMonitor extends Activity implements SensorEventListener {
         // update the plot with the updated history Lists:
         if (sensorId == 0) {
             pressureHistorySeries.setModel(pressureHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
-            preHistoryPlot.setRangeLabel("Pressure (hPa)");
+//            preHistoryPlot.setRangeLabel("Pressure (hPa)");
         } else if (sensorId == 1) {
             pressureHistorySeries.setModel(altitudeHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
-            preHistoryPlot.setRangeLabel("Altitude (m)");
+//            preHistoryPlot.setRangeLabel("Altitude (m)");
         } else {
             pressureHistorySeries.setModel(tempHistory, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY);
-            preHistoryPlot.setRangeLabel("Temperature (ºC)");
+//            preHistoryPlot.setRangeLabel("Temperature (ºC)");
         }
 
         // redraw the Plots:
