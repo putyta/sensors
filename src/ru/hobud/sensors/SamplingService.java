@@ -169,9 +169,11 @@ public class SamplingService extends Service {
                 double pressure = event.values[0];
                 double altitude = barometricLeveling.getValue(pressure); //event.values[1];
                 double temperature = event.values[2];
-                pressureHistory.push(pressure);
-                altitudeHistory.push(altitude);
-                temperatureHistory.push(temperature);
+                if (pressure > 225.0) {
+                    pressureHistory.push(pressure);
+                    altitudeHistory.push(altitude);
+                    temperatureHistory.push(temperature);
+                }
                 pressureHistory.flush();
                 altitudeHistory.flush();
                 temperatureHistory.flush();

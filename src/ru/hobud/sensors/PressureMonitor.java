@@ -256,22 +256,26 @@ public class PressureMonitor extends Activity implements SensorEventListener {
             public void onClick(final View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-                builder.setTitle(String.format("%s altituder", getString(altituder==null ? R.string.start_altituder : R.string.stop_altituder)));
+                builder.setTitle(String.format("Reset H"));
 // Add the buttons
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        barometricLeveling.setP0(pressureHistory.getLast());
+                        barometricLeveling.setH0(0.0);
+                        altitudeHistory.clear();
+                        altitudeSmoothingWin.clear();
+                        //LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-                        if(altituder == null) {
-                            altituder = new GPSAltituder();
-                            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, altituder);
-                            v.setKeepScreenOn(true);
-                        } else {
-                            lm.removeUpdates(altituder);
-                            altituder = null;
-                            v.setKeepScreenOn(false);
-                        }
-                        Toast.makeText(ctx, String.format("%s altituder", altituder == null ? "STOP" : "START"), Toast.LENGTH_SHORT).show();
+//                        if(altituder == null) {
+//                            altituder = new GPSAltituder();
+//                            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, altituder);
+//                            v.setKeepScreenOn(true);
+//                        } else {
+//                            lm.removeUpdates(altituder);
+//                            altituder = null;
+//                            v.setKeepScreenOn(false);
+//                        }
+//                        Toast.makeText(ctx, String.format("%s altituder", altituder == null ? "STOP" : "START"), Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -280,7 +284,7 @@ public class PressureMonitor extends Activity implements SensorEventListener {
                     }
                 });
 // Set other dialog properties
-                builder.setMessage(String.format("%s запись данных", altituder == null ? "Запустить" : "Остановить"));
+                builder.setMessage(String.format("Сбросить высоту в 0"));
 // Create the AlertDialog
                 AlertDialog dialog = builder.create();
                 dialog.show();
