@@ -173,6 +173,25 @@ public class SamplingService extends Service {
                     pressureHistory.push(pressure);
                     altitudeHistory.push(altitude);
                     temperatureHistory.push(temperature);
+                    int pSize = pressureHistory.size();
+                    // Фильтр всплесков
+                    if (pSize > 2) {
+                        double p1, p2, p3;
+                        p1 = pressureHistory.get(pSize - 3);
+                        p2 = pressureHistory.get(pSize - 2);
+                        p3 = pressureHistory.get(pSize - 1);
+                        if (Math.abs(p1 - p3) < 2) {
+                            if (Math.abs(p1 - p2) > 20) {
+                                pressureHistory.remove(pSize - 2);
+                                altitudeHistory.remove(pSize - 2);
+                            }
+                        }else if (Math.abs(p1 - p3) < 10) {
+                            if (Math.min(Math.abs(p1 - p2), Math.abs(p3-p2)) > 20) {
+                                pressureHistory.remove(pSize - 2);
+                                altitudeHistory.remove(pSize - 2);
+                            }
+                        }
+                    }
                 }
                 pressureHistory.flush();
                 altitudeHistory.flush();

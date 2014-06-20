@@ -12,7 +12,7 @@ public class BarometricLeveling {
     public BarometricLeveling() {
         p0 = -1;
         h0 = 0;
-        t = 20;
+        t = 25 + 273.15;
     }
 
     public void setH0(double h0) {
@@ -39,9 +39,9 @@ public class BarometricLeveling {
         // M=0.029 кг/моль - молекулярная масса
         // T=273.15 + T(C)
         // g=9.807
-        double T = 227.15 + 25.0;
+        // double T = 227.15 + 25.0;
         //res = 18400 * (1 + ALPHA_AIR * T) * Math.log(p0 / p) + h0;
-        res = 38.79 * T * Math.log(p0 / p);
+        res = 38.79 * t * Math.log(p0 / p);
         return res;
     }
 
